@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JS Practice</title>
 </head>
+
 <body>
     <h1>
         THE TITLE OF YOUR WEBPAGE
-      </h1>
-      <div id="container">
-          <div class="content">
-          This is the glorious text-content!
+    </h1>
+    <div id="container">
+        <div class="content">
+            This is the glorious text-content!
         </div>
+        <!-- Not ideal button listener soulution because of cluttering the HTML with JavaScript-->
+        <button onclick="alert('Hello world!')">Click me! #1</button>
+        <!-- We've moved the JavaScript code out of the HTML and into the script element. Still have the problem that a DOM element can only have 1 "onclick" property.-->
+        <button id="btn">Click me! #2</button>
+        <button id="btn3">Click me! #3</button>
+    </div>
+    <div id="container2">
+        <button id="1">Click me</button>
+        <button id="2">Click me</button>
+        <button id="3">Click me</button>
     </div>
     <script>
+
+        // buttons is a node list. It looks and acts much like an array.
+        const buttons = document.querySelectorAll('button');
+
+        // we use the .forEach method to iterate through each button
+        buttons.forEach((button) => {
+
+            // and for each one we add a 'click' listener
+            button.addEventListener('click', (e) => {
+                alert(button.id);
+            });
+        });
+
+        const btn = document.querySelector("#btn");
+        btn.onclick = () => alert("Hello world");
+
+        const btn3 = document.querySelector("#btn3");
+        btn3.addEventListener('click', () => {
+            alert("Hello World!");
+        });
+
+        btn3.addEventListener('click', function (e) {
+            e.target.style.background = "blue";
+        })
+
         const container = document.querySelector("#container");
-        
-        const pElement = document.createElement("p",);
+
+        const pElement = document.createElement("p");
         pElement.textContent = "Hey I'm red!";
         pElement.style.color = "red";
         container.appendChild(pElement);
@@ -32,7 +69,7 @@
         divElement.style.borderStyle = "solid"
         divElement.style.borderColor = "black";
         divElement.style.background = "pink";
-        
+
 
         const h1Element = document.createElement("h1");
         h1Element.textContent = "I'm a div!";
@@ -48,4 +85,5 @@
 
     </script>
 </body>
+
 </html>
